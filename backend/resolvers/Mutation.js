@@ -1,3 +1,5 @@
+const { photos, users, tags } = require("../public/data");
+
 var _id = 0;
 
 module.exports = {

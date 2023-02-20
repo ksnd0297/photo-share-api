@@ -65,5 +65,5 @@ app.get("/", (req, res) => res.send("PhotoShare API에 오신 것을 환영합�
 
 server.start().then((res) => {
   server.applyMiddleware({ app });
-  app.listen({ port: 4000 }, () => console.log(`GraphQL Server running @ http://lopcalhost:4000`));
+  app.listen({ port: 4000 }, () => console.log(`GraphQL Server running @ http://localhost:4000`));
 });
