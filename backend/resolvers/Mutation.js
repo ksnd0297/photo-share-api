@@ -31,21 +31,17 @@ module.exports = {
 
     // 3. 결과 값을 하나의 객체 안에 담습니다
     let latestUserInfo = {
-      name: login,
+      name: name,
       githubLogin: login,
       githubToken: access_token,
       avatar: avatar_url,
     };
 
     // 4. 데이터를 새로 추가하거나 이미 있는 데이터를 업데이트합니다
-    const user = await db.collection("users").replaceOne({ githubLogin: "b2bcodestatesOrg" }, latestUserInfo, { upsert: true });
+    await db.collection("users").replaceOne({ githubLogin: login }, latestUserInfo, { upsert: true });
 
-    const users = await db.collection("users");
+    const user = db.collection("users").findOne({ githubLogin: login });
 
-    const query = { githubLogin: "b2bcodestatesOrg" };
-
-    const movie = await users.findOne(query);
-
-    return { user: movie, token: access_token };
+    return { user, token: access_token };
   },
 };

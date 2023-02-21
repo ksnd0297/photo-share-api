@@ -34,7 +34,7 @@ input PostPhotoInput {
 
 type AuthPayload {
   token: String!
-  user: User!
+  user: User
 }
 
 type Mutation {

@@ -12,19 +12,19 @@ const requestGithubToken = (credentials) =>
     body: JSON.stringify(credentials),
   }).then((res) => res.json());
 
-const requestGithubUserAccount = (credentials) =>
-  fetch(`https://api.github.com/user/repos?client_id=${credentials.client_id}&client_secret=${credentials.client_secret}`, {
+const requestGithubUserAccount = (access_token) =>
+  fetch(`https://api.github.com/user`, {
     method: "GET",
     headers: {
-      Authorization: "Bearer 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",
+      Authorization: `Bearer ${access_token}`,
     },
-  }).then((res) => {
-    return res.json();
-  });
+  }).then((res) => res.json());
 
 async function authorizeWithGithub(credentials) {
-  const githubUser = await requestGithubUserAccount(credentials);
-  return { ...githubUser[0].owner, access_token: "Bearer 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" };
+  const { access_token } = await requestGithubToken(credentials);
+  const githubUser = await requestGithubUserAccount(access_token);
+
+  return { ...githubUser, access_token };
 }
 
 module.exports = { authorizeWithGithub };

@@ -1,0 +1,19 @@
+{
+  "name": "photo-share-api",
+  "version": "1.0.0",
+  "description": "웹 앱 API 개발을 위한 GraphQL 클론 코딩",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksnd0297/photo-share-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ksnd0297/photo-share-api/issues"
+  },
+  "homepage": "https://github.com/ksnd0297/photo-share-api#readme"
+}
