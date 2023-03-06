@@ -1,9 +1,11 @@
-const Query = require("./query");
-const Mutation = require("./mutation");
-const Type = require("./Type");
+const Query = require('./query');
+const Mutation = require('./mutation');
+const Type = require('./Type');
 
 const resolvers = {
-  Query,
+  Query: {
+    me: (parent, args, {currentUser}) => currentUser,
+  },
   Mutation,
   ...Type,
 };

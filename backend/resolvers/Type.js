@@ -1,9 +1,11 @@
-const { GraphQLScalarType } = require("graphql");
+const {GraphQLScalarType} = require('graphql');
 
 module.exports = {
   Photo: {
-    url: (parent) => `http://yoursite.com/img/${parent.id}.png`,
-    postedBy: (parent) => users.find((u) => u.githubLogin === parent.githubUser),
+    id: (parent) => parent.id || parent._id,
+    url: (parent) => `/img/photos/${parent._id}.jpg`,
+    postedBy: (parent, args, {db}) => db.collection('users').findOne({githubLogin: parent.userID}),
+
     taggedUsers: (parent) =>
       tags
         // 현재 사진에 대한 태그만 배열에 담아 반환합니다.
@@ -27,8 +29,8 @@ module.exports = {
   },
 
   DateTime: new GraphQLScalarType({
-    name: "DateTime",
-    description: "A valid date time value.",
+    name: 'DateTime',
+    description: 'A valid date time value.',
     parseValue: (value) => new Date(value),
     serialize: (value) => new Date(value).toISOString(),
     parseLiteral: (ast) => ast.value,
